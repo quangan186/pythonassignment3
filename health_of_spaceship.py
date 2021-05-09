@@ -1,3 +1,4 @@
+
 import random
 health_of_spaceship = 100
 problem_list = ["fan", "heat", "vision", "radar"]
