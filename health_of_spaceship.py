@@ -1,15 +1,18 @@
-
 import random
+
 health_of_spaceship = 100
-problem_list = ["fan", "heat", "vision", "radar"]
-i = random.choice(problem_list)
-print(i)
-if i == "fan":
-    current_health = health_of_spaceship - 20
-    print(f'current_health: {current_health}')
-elif i == "heat":
-    current_health = health_of_spaceship - 30
-    print(f'current_health: {current_health}')
-else:
-    current_health = health_of_spaceship - 40
-    print(f'current_health: {current_health}')
+problems = {
+    "fan": 20,
+    "heat": 30,
+    "vision": 40,
+    "radar": 40,
+}
+for name, damage in problems.items():
+    if random.random() < 0.5:
+        continue
+    print(name)
+    health_of_spaceship -= damage
+    print(f'current_health: {health_of_spaceship}')
+    if health_of_spaceship <= 0:
+        print("Your spaceship is stop working")
+        break
