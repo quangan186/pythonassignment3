@@ -49,6 +49,17 @@ def create_journal():
     else:
         print("Create successfully %s" % path_file)
 
+def page_menu():
+    print("""
+        1.Create page
+        2.Edit page
+        3.Delete page
+    """)
+    option = int(input("Enter your option: "))
+    if option == 1:
+        add_content()
+    else:
+        page_menu()
 
 def open_journal():
     os.chdir(os.getcwd())
@@ -66,6 +77,8 @@ def open_journal():
     print("Current pages:".format(len(page_list)))
     for page in page_list:
         print(page)
+    page_menu()
+
 
 
 def write_content():
@@ -107,16 +120,9 @@ def add_content():
     entry.write(title + "\n")
     entry.write(str(datetime.datetime.now()) + "\n")
 
-    count = 0
-    prev_index = 0
-    for i in range(0, len(content) - 1):
-        if content[i] == " ":
-            entry.write(content[prev_index:i])
-            count += 1
-            prev_index = i
-        if count == 10:
-            count = 0
-            entry.write("\n")
+
+    entry.write(content)
+
 
     entry.close()
 
@@ -131,20 +137,18 @@ def menu():
     print("What would you like to do?: ")
     print("1: Create a journal")
     print("2: Open a journal")
-    print("3: Create a page")
-    print("4: Remove_page")
+    print("3: Remove_page")
     option = input("Your choice:  ")
     print("-----\n-----")
     if option == "1" or option == 1:
         create_journal()
     elif option == "2" or option == 2:
         open_journal()
+
     elif option == "3" or option == 3:
-        add_content()
-    elif option == "4" or option == 4:
         remove_page()
     else:
-        print("Please input 1-4 options")
+        print("Please input 1-3 options")
         menu()
     choice = input("Do you need to select anything else? (Y/N)")
     if choice == "y" or choice == "yes" or choice == "Y":
