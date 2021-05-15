@@ -49,17 +49,32 @@ def create_journal():
     else:
         print("Create successfully %s" % path_file)
 
+
 def page_menu():
     print("""
         1.Create page
-        2.Edit page
+        2.Display page
         3.Delete page
     """)
     option = int(input("Enter your option: "))
     if option == 1:
         add_content()
+    elif option == 2:
+        open_page()
     else:
         page_menu()
+
+def open_page():
+    page_list = os.listdir()
+    print("Current pages:".format(len(page_list)))
+    for page in page_list:
+        print(page)
+    page_name = input("Please input the name of the page: ")
+    entry = open(page_name,"r")
+    for i in entry:
+        print(i)
+
+
 
 def open_journal():
     os.chdir(os.getcwd())
@@ -78,7 +93,6 @@ def open_journal():
     for page in page_list:
         print(page)
     page_menu()
-
 
 
 def write_content():
@@ -120,9 +134,7 @@ def add_content():
     entry.write(title + "\n")
     entry.write(str(datetime.datetime.now()) + "\n")
 
-
     entry.write(content)
-
 
     entry.close()
 
