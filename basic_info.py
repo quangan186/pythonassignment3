@@ -1,10 +1,6 @@
 import random
 from datetime import datetime
 import time
-# Menu
-print("*** Welcome to RMIT Spaceship ***")
-print("Good morning captain William and vice captain Diablo")
-start_button = input("Do you want to start: ")
 
 # set time
 start = "16/05/2021 06:00:00"
@@ -34,16 +30,19 @@ the estimated time to go to Mars
     delta_time_seconds = t1 - t0
 
     # distance from Earth
-    distance_from_Earth = int(v * delta_time_seconds)
+    distance_from_Earth = v * delta_time_seconds
     print(f'Current distance from spaceship to Earth: {distance_from_Earth} km')
 
     # distance from Mars
-    distance_from_Mars = int(s - delta_time_seconds * v)
+    distance_from_Mars = s - delta_time_seconds * v
     print(f'Current distance from spaceship to Mars: {distance_from_Mars} km')
 
     # estimated time of arrival
     estimate_time = ((s - v * delta_time_seconds) / v) / 3600  # hours
     print(f'Estimated time of arrival: {estimate_time}')
+
+    if distance_from_Earth == s or distance_from_Mars == 0:
+        print("You have arrived")
 
 
 print(distance_and_time_cal(s, v))
@@ -118,5 +117,4 @@ for name, damage in problems.items():
     if health_of_spaceship <= 0:
         print("Your spaceship is stop working")
         break
-
 
