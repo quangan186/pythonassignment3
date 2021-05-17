@@ -43,9 +43,8 @@ the estimated time to go to Mars
 
     if distance_from_Earth == s or distance_from_Mars == 0:
         print("You have arrived")
-
-
-print(distance_and_time_cal(s, v))
+    else:
+        print("You are on the way")
 
 
 def fuel_cal(current_fuel_level, fuel_burn_rate):
@@ -59,13 +58,10 @@ def fuel_cal(current_fuel_level, fuel_burn_rate):
     print(f'Current fuel level: {current_fuel_level} liters')
     while current_fuel_level != 0:
         current_fuel_level -= fuel_burn_rate
-        time.sleep(1)  # delay 60 seconds
+        time.sleep(60)  # delay 60 seconds
         print(f'Current fuel: {current_fuel_level} liters')
     else:
         print('Out of energy')
-
-
-fuel_cal(100, 10)
 
 
 def health_of_crew_members(number_of_members):
@@ -96,25 +92,14 @@ def health_of_crew_members(number_of_members):
         print(f'There are {number_of_members} total members and all of them are normal')
 
 
-health_of_crew_members(10)
-
-
-health_of_spaceship = 100  # %
-
-# dictionary of problems and damage
-problems = {
-    "fan": 20,
-    "heat": 30,
-    "vision": 40,
-    "radar": 40,
-}
-for name, damage in problems.items():
-    if random.random() < 0.5:  # random the possibility of problems happen
-        continue
-    print(name)  # print problems
-    health_of_spaceship -= damage
-    print(f'current_health: {health_of_spaceship}')
-    if health_of_spaceship <= 0:
-        print("Your spaceship is stop working")
-        break
-
+def spaceship_health(health_of_spaceship, problems):
+     print(health_of_spaceship)
+     for name, damage in problems.items():
+        if random.random() < 0.5:  # random the possibility of problems happen
+            continue
+        print(f'Problems: {name}')  # print problems
+        health_of_spaceship -= damage
+        print(f'current_health: {health_of_spaceship}')
+        if health_of_spaceship <= 0:
+            print("Your spaceship is stop working")
+            break
