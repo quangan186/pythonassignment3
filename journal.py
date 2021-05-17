@@ -55,25 +55,54 @@ def page_menu():
         1.Create page
         2.Display page
         3.Delete page
+        4.Return to main menu
     """)
     option = int(input("Enter your option: "))
     if option == 1:
         add_content()
     elif option == 2:
-        open_page()
+        display_page()
+    elif option == 3:
+        remove_page()
+    elif option == 4:
+        menu()
     else:
-        page_menu()
+        choice = input("Do you need to select anything else? (Y/N) ")
+        if choice == "y" or choice == "yes" or choice == "Y":
+            page_menu()
+        else:
+            menu()
 
-def open_page():
+
+def remove_page():
+    title = input("What's the title of your entry?  ")
+    filename = title.replace(" ", "") + ".txt"
+    os.remove(filename)
+
+
+def display_page_list():
     page_list = os.listdir()
     print("Current pages:".format(len(page_list)))
     for page in page_list:
         print(page)
+
+
+def open_page():
     page_name = input("Please input the name of the page: ")
-    entry = open(page_name,"r")
+    filename = page_name.replace(" ", "") + ".txt"
+    entry = open(filename, "r")
     for i in entry:
         print(i)
 
+
+def display_page():
+    display_page_list()
+    option = input("Do you wanna open da file (Y/N): ")
+    if option == "Y":
+        open_page()
+    else:
+        print("Back to menu.")
+        page_menu()
 
 
 def open_journal():
@@ -139,17 +168,12 @@ def add_content():
     entry.close()
 
 
-def remove_page():
-    title = input("What's the title of your entry?  ")
-    filename = title.replace(" ", "") + ".txt"
-    os.remove(filename)
-
-
 def menu():
     print("What would you like to do?: ")
     print("1: Create a journal")
     print("2: Open a journal")
     print("3: Remove_page")
+    print("EXIT to close the program")
     option = input("Your choice:  ")
     print("-----\n-----")
     if option == "1" or option == 1:
@@ -159,10 +183,12 @@ def menu():
 
     elif option == "3" or option == 3:
         remove_page()
+    elif option.lower() == "exit":
+        print("Bye Bye <3")
     else:
         print("Please input 1-3 options")
         menu()
-    choice = input("Do you need to select anything else? (Y/N)")
+    choice = input("Do you need to select anything else? (Y/N) ")
     if choice == "y" or choice == "yes" or choice == "Y":
         menu()
     else:
