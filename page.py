@@ -1,3 +1,4 @@
+from journal import Journal
 import datetime
 import os
 
