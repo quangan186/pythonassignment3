@@ -1,4 +1,5 @@
 from journal import Journal
+
 import datetime
 import os
 
@@ -12,12 +13,11 @@ class Page(Journal):
     def set_page_name(self, page_name):
         self.page_name = page_name
 
-    def open(self):
+    def open_page(self):
         self.set_page_name(input("Input the page name: "))
         filename = self.page_name.replace(" ", "") + ".txt"
         entry = open(filename, "r")
-        for i in entry:
-            print(i)
+        print(*entry)
 
     def write(self):
         self.content = input("Body: ")
@@ -25,6 +25,7 @@ class Page(Journal):
 
     def add_content(self):
         self.set_page_name(input("Input the page name: "))
+        self.set_title(input("Input the title: "))
         self.content = self.write()
         filename = self.page_name.replace(" ", "") + ".txt"
         entry = open(filename, "a")
@@ -40,9 +41,10 @@ class Page(Journal):
         print(*page_list)
         option = input("Do you wanna open da file (Y/N): ")
         if option == "Y":
-            self.open()
+            self.open_page()
+
         else:
-            print("Back to menu.")
+            print("bye")
 
     def remove(self):
         self.set_page_name(input("Input the name of a page: "))
