@@ -1,6 +1,4 @@
-import datetime
 import os
-
 
 
 class Journal:
@@ -37,7 +35,6 @@ class Journal:
         page_list = os.listdir()
         print("Current pages:".format(len(page_list)))
         print(*page_list)
-
 
     def remove(self):
         self.set_title(input("Input the name of journal: "))
