@@ -4,32 +4,35 @@ from datetime import datetime
 import time
 
 # set time
-start = "16/05/2021 06:00:00"
+start = "22/05/2021 06:00:00"
 print(f'Start date is {start}')
 d = datetime.strptime(start, "%d/%m/%Y %H:%M:%S")
 t0 = time.mktime(d.timetuple())
 
 
-def distance_and_time_cal(s, v):
+def distance_and_time_cal(s):
     print(f'Distance between Earth and Mars: {s} km')
-    print(f'Spaceship velocity: {v} km/s')
+    distance_from_Earth = 0
     while True:
         time.sleep(10)
-        named_tuple = time.localtime()  # get struct_time
+        v = random.uniform(11, 500)
+        print(f'\nCurrent velocity:{v}')
+        named_tuple = time.localtime()
         time_string = time.strftime("%d/%m/%Y, %H:%M:%S", named_tuple)
-        print("\nTime now {}".format(time_string))
+        print("- Time now {}".format(time_string))
         t1 = time.time()
         delta_time_seconds = t1 - t0
 
-        distance_from_Earth = v * delta_time_seconds
-        print(f'Current distance from spaceship to Earth: {distance_from_Earth} km')
+        distance_from_Earth += v * delta_time_seconds
+        print(f'- Current distance from spaceship to Earth: {distance_from_Earth} km')
 
-        distance_from_Mars = s - delta_time_seconds * v
-        print(f'Current distance from spaceship to Mars: {distance_from_Mars} km')
+        distance_from_Mars = s - distance_from_Earth
+        distance_from_Mars -= distance_from_Earth
+        print(f'- Current distance from spaceship to Mars: {distance_from_Mars} km')
 
         # estimated time of arrival
         estimate_time = ((s - v * delta_time_seconds) / v) / 3600  # hours
-        print(f'Estimated time of arrival: {estimate_time} hours')
+        print(f'- Estimated time of arrival: {estimate_time} hours')
 
         if distance_from_Earth >= s or distance_from_Mars <= 0:
             print("You have arrived")
@@ -39,7 +42,6 @@ def distance_and_time_cal(s, v):
 
 
 def fuel_cal(current_fuel_level, fuel_burn_rate):
-
     print(f'Current fuel level: {current_fuel_level} liters')
     while current_fuel_level != 0:
         current_fuel_level -= fuel_burn_rate
