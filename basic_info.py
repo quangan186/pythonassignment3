@@ -34,7 +34,7 @@ def distance_and_time_cal(s):
         estimate_time = ((s - v * delta_time_seconds) / v) / 3600  # hours
         print(f'- Estimated time of arrival: {estimate_time} hours')
 
-        if distance_from_Earth >= s or distance_from_Mars <= 0:
+        if distance_from_Earth >= s and distance_from_Mars <= 0:
             print("You have arrived")
             break
         else:
@@ -45,10 +45,29 @@ def fuel_cal(current_fuel_level, fuel_burn_rate):
     print(f'Current fuel level: {current_fuel_level} liters')
     while current_fuel_level != 0:
         current_fuel_level -= fuel_burn_rate
-        time.sleep(60)
+        time.sleep(30)
         print(f'Current fuel: {current_fuel_level} liters')
     else:
         print('Out of energy')
+
+
+def spaceship_health(problems):
+    while True:
+        health_of_spaceship = 100
+        print(f"\nSpaceship health: {health_of_spaceship}")
+        time.sleep(10)
+        for name, damage in problems.items():
+            if random.random() < 0.5:
+                continue
+            print(f'\nProblems: {name}')
+            health_of_spaceship -= damage
+            print(f'Current_health: {health_of_spaceship}')
+            if health_of_spaceship > 0:
+                print("We are going to fix it")
+            else:
+                print("Your spaceship is stop working")
+                break
+        time.sleep(30)  # delay 30 secs for fixing spaceship
 
 
 def health_of_crew_members(number_of_members):
@@ -67,16 +86,3 @@ def health_of_crew_members(number_of_members):
         else:
             print(f'There are {number_of_members} total members and all of them are normal')
         time.sleep(60)
-
-
-def spaceship_health(health_of_spaceship, problems):
-    print(f'Health of spaceship: {health_of_spaceship}')
-    for name, damage in problems.items():
-        if random.random() < 0.5:
-            continue
-        print(f'Problems: {name}')
-        health_of_spaceship -= damage
-        print(f'current_health: {health_of_spaceship}')
-        if health_of_spaceship <= 0:
-            print("Your spaceship is stop working")
-            break
