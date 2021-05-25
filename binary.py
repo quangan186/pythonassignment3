@@ -1,4 +1,5 @@
 import turtle
+from datetime import datetime
 
 
 def create_hours(first_column, second_column):
@@ -65,39 +66,40 @@ def create_clock(column_name: list):
     create_second(column_name[4], column_name[5])
 
 
-def run_clock(time_list: list, column_name: list):
-    for time in time_list:
-        binary = [8, 4, 2, 1]
-        index = 0
-        for i in time:
-            i = int(i)
-            calculate = i
+def run_clock(time: str, column_name: list):
+    binary = [8, 4, 2, 1]
+    index = 0
+    for i in time:
+        i = int(i)
+        calculate = i
+        n = 0
+        if index == 0:
+            distance = 50
+            n = 2
+        elif index == 2 or index == 4:
+            distance = 100
+            n = 1
+        else:
+            distance = 150
             n = 0
-            if index == 0:
-                distance = 50
-                n = 2
-            elif index == 2 or index == 4:
-                distance = 100
-                n = 1
-            else:
-                distance = 150
-                n = 0
 
-            while True:
-                if index == 7 or n == 4:
-                    break
-                column_name[index].penup()
-                if calculate < binary[n]:
-                    n += 1
-                    distance -= 50
-                    continue
-                calculate -= binary[n]
+        while True:
+            if index == 7 or n == 4:
+                break
+            column_name[index].penup()
+            if calculate < binary[n]:
+                n += 1
+                distance -= 50
+                continue
+            calculate -= binary[n]
 
-                if calculate >= 0:
-                    column_name[index].sety(distance)
-                    column_name[index].dot(10, "red")
-                column_name[index].pendown()
-            index += 1
+            if calculate >= 0:
+                column_name[index].sety(distance)
+                column_name[index].dot(10, "red")
+
+            column_name[index].pendown()
+
+        index += 1
 
 
 if __name__ == '__main__':
@@ -121,12 +123,11 @@ if __name__ == '__main__':
         go_to(n, 0, i)
         n += 20
 
-    time = 112509
-    time_list = []
-    create_clock(column_name)
-    while time <= 112599:
-        time_list.append(str(time))
-        time += 1
-        run_clock(time_list, column_name)
+    while True:
+        now = datetime.now()
+        current_time = now.strftime("%H%M%S")
+        print(current_time)
+        create_clock(column_name)
+        run_clock(current_time, column_name)
 
-    win.exitonclick()
+win.exitonclick()
