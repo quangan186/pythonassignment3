@@ -61,9 +61,11 @@ def go_to(x, y, name):
 
 
 def create_clock(column_name: list):
-    create_hours(column_name[0], column_name[1])
-    create_minute(column_name[2], column_name[3])
     create_second(column_name[4], column_name[5])
+    create_minute(column_name[2], column_name[3])
+    create_hours(column_name[0], column_name[1])
+
+
 
 
 def run_clock(time: str, column_name: list):
@@ -117,17 +119,23 @@ if __name__ == '__main__':
     sixth_column = turtle.Turtle()
     sixth_column.speed(0)
     n = 0
+    last = datetime.now()
+    last_time = last.strftime("%H%M%S")
     column_name = [first_column, second_column, third_column, fourth_column, firth_column, sixth_column]
     for i in column_name:
         i.ht()
         go_to(n, 0, i)
         n += 20
-
+    create_clock(column_name)
     while True:
         now = datetime.now()
         current_time = now.strftime("%H%M%S")
         print(current_time)
-        create_clock(column_name)
         run_clock(current_time, column_name)
-
-win.exitonclick()
+        if current_time[0] != last_time[0] or current_time[1] != last_time[1]:
+            create_hours(column_name[0], column_name[1])
+        if current_time[2] != last_time[2] or current_time[3] != last_time[3]:
+            create_minute(column_name[2], column_name[3])
+        if current_time[4] != last_time[4] or current_time[5] != last_time[5]:
+            create_second(column_name[4], column_name[5])
+        last_time = current_time
