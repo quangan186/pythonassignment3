@@ -2,6 +2,7 @@ import random
 from datetime import datetime
 import time
 
+
 # set time to start the journey
 start = "22/05/2021 06:00:00"
 print(f'Start date is {start}')
@@ -24,19 +25,18 @@ def distance_and_time_cal(s):
     while True:
         current_fuel_level = 100
         time.sleep(1)
-        v = random.uniform(11, 50)
+        v = random.uniform(11, 266000)
         print(f'\nCurrent velocity:{v}')
         named_tuple = time.localtime()
         time_string = time.strftime("%d/%m/%Y, %H:%M:%S", named_tuple)
         print("- Time now {}".format(time_string))
         t1 = time.time()
-        delta_time_seconds = t1 - t0
+        delta_time_seconds = (t1 - t0) // 3600
 
-        distance_from_Earth += v * delta_time_seconds
+        distance_from_Earth = v * delta_time_seconds
         print(f'- Current distance from spaceship to Earth: {distance_from_Earth} km')
 
         distance_from_Mars = s - distance_from_Earth
-        distance_from_Mars -= distance_from_Earth
         print(f'- Current distance from spaceship to Mars: {distance_from_Mars} km')
 
         # estimated time of arrival

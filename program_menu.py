@@ -75,7 +75,7 @@ def spaceship_menu():
     choose_button = input("Which one do you want to choose: ")
     if choose_button == '1':
         from basic_info import distance_and_time_cal
-        print(distance_and_time_cal(230000000))
+        print(distance_and_time_cal(225000000))
     elif choose_button == '2':
         from basic_info import spaceship_health
         print(spaceship_health(problems={"fan": 20, "heat": 30, "vision": 40, "radar": 40}))
