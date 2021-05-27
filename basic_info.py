@@ -3,14 +3,20 @@ import random
 from datetime import datetime
 import time
 
-# set time
+# set time to start the journey
 start = "22/05/2021 06:00:00"
 print(f'Start date is {start}')
 d = datetime.strptime(start, "%d/%m/%Y %H:%M:%S")
 t0 = time.mktime(d.timetuple())
 
-
+# Information about the journey of the spaceship in space
 def distance_and_time_cal(s):
+    """
+    This function is used to show the current velocity, time and distance from the spaceship to earth and vice versa
+    :param s: distance between Earth and Mars
+    :param v: current velocity of the spaceship
+    :return: none
+    """
     print(f'Distance between Earth and Mars: {s} km')
     distance_from_Earth = 0
     while True:
@@ -42,6 +48,12 @@ def distance_and_time_cal(s):
 
 
 def fuel_cal(current_fuel_level, fuel_burn_rate):
+    """
+    This function is used to give the crew information about the fuel of the spaceship
+    :param current_fuel_level: the level of fuel at the moment it is checked
+    :param fuel_burn_rate: rate of burning of fuel
+    :return: none
+    """
     print(f'Current fuel level: {current_fuel_level} liters')
     while current_fuel_level != 0:
         current_fuel_level -= fuel_burn_rate
@@ -52,6 +64,12 @@ def fuel_cal(current_fuel_level, fuel_burn_rate):
 
 
 def spaceship_health(problems):
+    """
+    the current condition of the spaceship
+    :param health_of_spaceship: the current condition of the spaceship
+    :param problems: any issues that the spaceship met
+    :return:
+    """
     while True:
         health_of_spaceship = 100
         print(f"\nSpaceship health: {health_of_spaceship}")
@@ -69,8 +87,13 @@ def spaceship_health(problems):
                 break
         time.sleep(30)  # delay 30 secs for fixing spaceship
 
-
+# Health condition of crew members
 def health_of_crew_members(number_of_members):
+    """
+    This function shows records of crew members about their health condition
+    :param number_of_members:  number of people in the spaceship
+    :return: none
+    """
     health_problem_list = ['fever', 'sneeze', 'stomachache', 'sore throat']
     while True:
         victims = random.randrange(0, number_of_members)
