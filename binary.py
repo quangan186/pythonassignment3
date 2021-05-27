@@ -66,8 +66,6 @@ def create_clock(column_name: list):
     create_hours(column_name[0], column_name[1])
 
 
-
-
 def run_clock(time: str, column_name: list):
     binary = [8, 4, 2, 1]
     index = 0
@@ -107,9 +105,7 @@ def run_clock(time: str, column_name: list):
 if __name__ == '__main__':
     win = turtle.Screen()
     clock = turtle.Turtle()
-    clock.penup()
-    clock.goto(-300, 290)
-    clock.pendown()
+    clock.ht()
     first_column = turtle.Turtle()
     first_column.speed(0)
     second_column = turtle.Turtle()
@@ -130,12 +126,12 @@ if __name__ == '__main__':
         i.ht()
         go_to(n, 0, i)
         n += 20
+    go_to(20, 160, clock)
     create_clock(column_name)
     while True:
         now = datetime.now()
         current_time = now.strftime("%H%M%S")
         current_time_write = now.strftime("%H:%M:%S")
-        print(current_time)
         clock.write(current_time_write, font=("Arial", 18, "normal"))
         run_clock(current_time, column_name)
         if current_time[0] != last_time[0] or current_time[1] != last_time[1]:
