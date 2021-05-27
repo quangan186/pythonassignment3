@@ -100,7 +100,7 @@ def main_menu(input_journal, input_page):
         print("What would you like to do?: ")
         print("1: Open Spaceship Dashboard")
         print("2: Open Journal Dashboard")
-        print("3: Open Clock Dashboard")
+        print("3: Open Binary Clock")
         print("EXIT to close the program")
 
         print("-----\n-----")

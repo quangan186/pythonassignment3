@@ -2,13 +2,12 @@ import random
 from datetime import datetime
 import time
 
-
 # set time to start the journey
 start = "22/05/2021 06:00:00"
 print(f'Start date is {start}')
 d = datetime.strptime(start, "%d/%m/%Y %H:%M:%S")
 t0 = time.mktime(d.timetuple())
-fuel_burn_rate = 0.001/10000
+fuel_burn_rate = 0.009 / 10000
 
 
 # Information about the journey of the spaceship in space
@@ -19,7 +18,7 @@ def distance_and_time_cal(s):
     :param v: current velocity of the spaceship
     :return: none
     """
-    distance_from_Earth, distance_from_Mars = 0 , s
+    distance_from_Earth, distance_from_Mars = 0, s
     print(f'Distance between Earth and Mars: {s} km')
     while True:
         current_fuel_level = 100
@@ -50,7 +49,6 @@ def distance_and_time_cal(s):
             break
         else:
             print("You are on the way")
-
 
 
 def spaceship_health(problems):
