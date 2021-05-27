@@ -44,7 +44,7 @@ def distance_and_time_cal(s):
         print(f'- Estimated time of arrival: {estimate_time} hours')
 
         current_fuel_level -= (fuel_burn_rate * distance_from_Earth)
-        print(f'Current fuel: {current_fuel_level} liters')
+        print(f'- Current fuel: {current_fuel_level} liters')
 
         if distance_from_Earth >= s and distance_from_Mars <= 0:
             print("You have arrived")
