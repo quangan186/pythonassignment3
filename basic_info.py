@@ -15,7 +15,6 @@ def distance_and_time_cal(s):
     """
     This function is used to show the current velocity, time and distance from the spaceship to earth and vice versa
     :param s: distance between Earth and Mars
-    :param v: current velocity of the spaceship
     :return: none
     """
     distance_from_Earth, distance_from_Mars = 0, s
@@ -54,7 +53,6 @@ def distance_and_time_cal(s):
 def spaceship_health(problems):
     """
     the current condition of the spaceship
-    :param health_of_spaceship: the current condition of the spaceship
     :param problems: any issues that the spaceship met
     :return:
     """
@@ -85,9 +83,9 @@ def health_of_crew_members(number_of_members):
     """
     health_problem_list = ['fever', 'sneeze', 'stomachache', 'sore throat']
     while True:
-        victims = random.randrange(0, number_of_members)
+        victims = random.randrange(0, number_of_members)        # The amount of crew members who catch a disease
 
-        problem = random.choice(health_problem_list)
+        problem = random.choice(health_problem_list)            # Name of disease
 
         if victims >= 2:
             print(f'There are {number_of_members} total members and {victims} members have {problem}')
