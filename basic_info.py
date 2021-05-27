@@ -19,13 +19,12 @@ def distance_and_time_cal(s):
     :param v: current velocity of the spaceship
     :return: none
     """
-
+    distance_from_Earth, distance_from_Mars = 0 , s
     print(f'Distance between Earth and Mars: {s} km')
-    distance_from_Earth = 0
     while True:
         current_fuel_level = 100
-        time.sleep(1)
-        v = random.uniform(11, 266000)
+        time.sleep(10)
+        v = random.uniform(11, 2660)
         print(f'\nCurrent velocity:{v}')
         named_tuple = time.localtime()
         time_string = time.strftime("%d/%m/%Y, %H:%M:%S", named_tuple)
@@ -33,10 +32,10 @@ def distance_and_time_cal(s):
         t1 = time.time()
         delta_time_seconds = (t1 - t0) // 3600
 
-        distance_from_Earth = v * delta_time_seconds
+        distance_from_Earth += (v * delta_time_seconds)
         print(f'- Current distance from spaceship to Earth: {distance_from_Earth} km')
 
-        distance_from_Mars = s - distance_from_Earth
+        distance_from_Mars -= distance_from_Earth
         print(f'- Current distance from spaceship to Mars: {distance_from_Mars} km')
 
         # estimated time of arrival
