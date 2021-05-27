@@ -106,6 +106,10 @@ def run_clock(time: str, column_name: list):
 
 if __name__ == '__main__':
     win = turtle.Screen()
+    clock = turtle.Turtle()
+    clock.penup()
+    clock.goto(-300, 290)
+    clock.pendown()
     first_column = turtle.Turtle()
     first_column.speed(0)
     second_column = turtle.Turtle()
@@ -130,7 +134,9 @@ if __name__ == '__main__':
     while True:
         now = datetime.now()
         current_time = now.strftime("%H%M%S")
+        current_time_write = now.strftime("%H:%M:%S")
         print(current_time)
+        clock.write(current_time_write, font=("Arial", 18, "normal"))
         run_clock(current_time, column_name)
         if current_time[0] != last_time[0] or current_time[1] != last_time[1]:
             create_hours(column_name[0], column_name[1])
@@ -139,3 +145,4 @@ if __name__ == '__main__':
         if current_time[4] != last_time[4] or current_time[5] != last_time[5]:
             create_second(column_name[4], column_name[5])
         last_time = current_time
+        clock.clear()
