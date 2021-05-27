@@ -1,4 +1,3 @@
-
 import random
 from datetime import datetime
 import time
@@ -8,6 +7,8 @@ start = "22/05/2021 06:00:00"
 print(f'Start date is {start}')
 d = datetime.strptime(start, "%d/%m/%Y %H:%M:%S")
 t0 = time.mktime(d.timetuple())
+fuel_burn_rate = 0.001/10000
+
 
 # Information about the journey of the spaceship in space
 def distance_and_time_cal(s):
@@ -17,11 +18,13 @@ def distance_and_time_cal(s):
     :param v: current velocity of the spaceship
     :return: none
     """
+
     print(f'Distance between Earth and Mars: {s} km')
     distance_from_Earth = 0
     while True:
-        time.sleep(10)
-        v = random.uniform(11, 500)
+        current_fuel_level = 100
+        time.sleep(1)
+        v = random.uniform(11, 50)
         print(f'\nCurrent velocity:{v}')
         named_tuple = time.localtime()
         time_string = time.strftime("%d/%m/%Y, %H:%M:%S", named_tuple)
@@ -40,27 +43,15 @@ def distance_and_time_cal(s):
         estimate_time = ((s - v * delta_time_seconds) / v) / 3600  # hours
         print(f'- Estimated time of arrival: {estimate_time} hours')
 
+        current_fuel_level -= (fuel_burn_rate * distance_from_Earth)
+        print(f'Current fuel: {current_fuel_level} liters')
+
         if distance_from_Earth >= s and distance_from_Mars <= 0:
             print("You have arrived")
             break
         else:
             print("You are on the way")
 
-
-def fuel_cal(current_fuel_level, fuel_burn_rate):
-    """
-    This function is used to give the crew information about the fuel of the spaceship
-    :param current_fuel_level: the level of fuel at the moment it is checked
-    :param fuel_burn_rate: rate of burning of fuel
-    :return: none
-    """
-    print(f'Current fuel level: {current_fuel_level} liters')
-    while current_fuel_level != 0:
-        current_fuel_level -= fuel_burn_rate
-        time.sleep(30)
-        print(f'Current fuel: {current_fuel_level} liters')
-    else:
-        print('Out of energy')
 
 
 def spaceship_health(problems):
@@ -86,6 +77,7 @@ def spaceship_health(problems):
                 print("Your spaceship is stop working")
                 break
         time.sleep(30)  # delay 30 secs for fixing spaceship
+
 
 # Health condition of crew members
 def health_of_crew_members(number_of_members):
