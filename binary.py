@@ -102,7 +102,7 @@ def run_clock(time: str, column_name: list):
         index += 1
 
 
-if __name__ == '__main__':
+def binary_clock():
     win = turtle.Screen()
     clock = turtle.Turtle()
     clock.ht()

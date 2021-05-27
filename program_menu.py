@@ -94,7 +94,9 @@ def main_menu(input_journal, input_page):
     :param input_page: input which page users want to go to
     :return: none
     """
+
     while True:
+
         print("What would you like to do?: ")
         print("1: Open Spaceship Dashboard")
         print("2: Open Journal Dashboard")
@@ -108,7 +110,8 @@ def main_menu(input_journal, input_page):
         elif option == "2":
             journal_menu(input_journal, input_page)
         elif option == "3":
-            print("Maintain")
+            from binary import binary_clock
+            binary_clock()
         elif option.lower() == "exit":
             return False
         else:
@@ -123,4 +126,11 @@ if __name__ == '__main__':
     origin = os.getcwd()
     journal.set_author(author)
     page.set_author(author)
+    print(""""
+    ----------Welcome {} to HD spaceship------------
+    Made by: 
+    Nguyen Tuan Anh    (s3864077)
+    Bui Quang An       (s3877482)
+    Nguyen Ha Dieu Anh (s3879053)
+    """.format(author))
     main_menu(journal, page)
