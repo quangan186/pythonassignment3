@@ -21,9 +21,9 @@ def distance_and_time_cal(s):
     print(f'Distance between Earth and Mars: {s} km')
     while True:
         current_fuel_level = 100
-        time.sleep(10)
+        time.sleep(20)  # delay 20 secs to update distance and estimated time
         v = random.uniform(11, 2660)
-        print(f'\nCurrent velocity:{v}')
+        print(f'\nCurrent velocity:{v} km/h')
         named_tuple = time.localtime()
         time_string = time.strftime("%d/%m/%Y, %H:%M:%S", named_tuple)
         print("- Time now {}".format(time_string))
@@ -44,11 +44,13 @@ def distance_and_time_cal(s):
         print(f'- Current fuel: {current_fuel_level} liters')
 
         if distance_from_Earth >= s and distance_from_Mars <= 0:
-            print("You have arrived")
+            print("You are going to arrive")
             break
         else:
             print("You are on the way")
-
+        go_back_button = input("Press E to go back: ")
+        if go_back_button == "E" or "e":
+            break
 
 def spaceship_health(problems):
     """
@@ -71,6 +73,9 @@ def spaceship_health(problems):
             else:
                 print("Your spaceship is stop working")
                 break
+        go_back_button = input("Press E to go back: ")
+        if go_back_button == "E" or "e":
+            break
         time.sleep(30)  # delay 30 secs for fixing spaceship
 
 
@@ -95,4 +100,7 @@ def health_of_crew_members(number_of_members):
 
         else:
             print(f'There are {number_of_members} total members and all of them are normal')
-        time.sleep(60)
+        go_back_button = input("Press E to go back: ")
+        if go_back_button == "E" or "e":
+            break
+        time.sleep(60)  # delay 60 secs to update health of crew members
