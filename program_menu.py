@@ -66,26 +66,21 @@ def spaceship_menu():
     This function is used as a main menu to call other functions
     :return: none
     """
-    print("Menu")
-    print("1. Check overall spaceship ")
-    print("2. Check health of spaceship")
-    print("3. Check health of crew members")
-    print("4. Exit")
+    while True:
 
-    choose_button = input("Which one do you want to choose: ")
-    if choose_button == '1':
-        from basic_info import distance_and_time_cal
-        print(distance_and_time_cal(225000000))
-    elif choose_button == '2':
-        from basic_info import spaceship_health
-        print(spaceship_health())
-    elif choose_button == '3':
-        from basic_info import health_of_crew_members
-        print(health_of_crew_members(10))
+        print("Menu")
+        print("1. Check overall spaceship ")
+        print("2. Exit")
 
-    else:
-        print('Stop the process')
-
+        print("-----\n-----")
+        option = input("Your choice:  ")
+        if option == '1':
+            from basic_info import distance_and_time_cal
+            print(distance_and_time_cal(225000000))
+        elif option == "2":
+            print('Stop the process')
+        else:
+            print("Please input 1-2 options: ")
 
 def main_menu(input_journal, input_page):
     """
