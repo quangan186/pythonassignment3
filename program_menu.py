@@ -89,8 +89,7 @@ def spaceship_menu():
 
 def main_menu(input_journal, input_page):
     """
-    This function represent the main menu of all program
-    Call all function of the program
+    This function represent the menu of the journal
     :param input_journal: input the name of the journal
     :param input_page: input which page users want to go to
     :return: none
