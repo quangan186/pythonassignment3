@@ -122,7 +122,7 @@ if __name__ == '__main__':
     journal.set_author(author)
     page.set_author(author)
     print(""""
-    ----------Welcome {} to HD spaceship------------
+    ----------Welcome {} to HD spaceship (Group 32)------------
     Made by: 
     Nguyen Tuan Anh    (s3864077)
     Bui Quang An       (s3877482)
