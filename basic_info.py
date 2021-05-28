@@ -16,16 +16,15 @@ def distance_and_time_cal(s):
     """
     This function is used to show the current velocity, time and distance from the spaceship to earth and vice versa
     :param s: distance between Earth and Mars
-    :param v: current velocity of the spaceship
     :return: none
     """
-    distance_from_Earth, distance_from_Mars = 0 , s
+    distance_from_Earth, distance_from_Mars = 0, s
     print(f'Distance between Earth and Mars: {s} km')
     while True:
         current_fuel_level = 100
-        time.sleep(10)
+        time.sleep(20)  # delay 20 secs to update distance and estimated time
         v = random.uniform(11, 2660)
-        print(f'\nCurrent velocity:{v}')
+        print(f'\nCurrent velocity:{v} km/h')
         named_tuple = time.localtime()
         time_string = time.strftime("%d/%m/%Y, %H:%M:%S", named_tuple)
         print("- Time now {}".format(time_string))
@@ -46,17 +45,18 @@ def distance_and_time_cal(s):
         print(f'- Current fuel: {current_fuel_level} liters')
 
         if distance_from_Earth >= s and distance_from_Mars <= 0:
-            print("You have arrived")
+            print("You are going to arrive")
             break
         else:
             print("You are on the way")
-
+        go_back_button = input("Press E to go back: ")
+        if go_back_button == "E" or "e":
+            break
 
 
 def spaceship_health(problems):
     """
     the current condition of the spaceship
-    :param health_of_spaceship: the current condition of the spaceship
     :param problems: any issues that the spaceship met
     :return:
     """
@@ -75,6 +75,9 @@ def spaceship_health(problems):
             else:
                 print("Your spaceship is stop working")
                 break
+        go_back_button = input("Press E to go back: ")
+        if go_back_button == "E" or "e":
+            break
         time.sleep(30)  # delay 30 secs for fixing spaceship
 
 
@@ -99,4 +102,7 @@ def health_of_crew_members(number_of_members):
 
         else:
             print(f'There are {number_of_members} total members and all of them are normal')
-        time.sleep(60)
+        go_back_button = input("Press E to go back: ")
+        if go_back_button == "E" or "e":
+            break
+        time.sleep(60)  # delay 60 secs to update health of crew members
